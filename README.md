@@ -33,21 +33,21 @@ The gameplay is driven by several interconnected systems:
 To spawn monsters evenly around the player at a fixed distance.
 
 **Algorithm Steps:**
-1. Generate a random angle: 
-angle = Random.Range(0f, 360f) * Mathf.Deg2Rad
-(random angle between 0° and 360° is generated to represent a direction on a circle)
+1. Generate a random angle:    
+angle = Random.Range(0f, 360f) * Mathf.Deg2Rad  
+(random angle between 0° and 360° is generated to represent a direction on a circle)  
 
-2. Convert polar coordinates to Cartesian coordinates:
-x = cos(angle) × spawnDistance
-y = sin(angle) × spawnDistance
-(converts the randomly chosen direction and fixed spawn radius into x and y coordinates so Unity can correctly place monsters around the player)
+2. Convert polar coordinates to Cartesian coordinates:  
+x = cos(angle) × spawnDistance  
+y = sin(angle) × spawnDistance  
+(converts the randomly chosen direction and fixed spawn radius into x and y coordinates so Unity can correctly place monsters around the player)  
 
-3. Add offset to player position:
-spawnPosition = playerPosition + spawnOffset
-(centers the circular spawn position on the player by adding the computed offset to the player’s current position)
+3. Add offset to player position:  
+spawnPosition = playerPosition + spawnOffset  
+(centers the circular spawn position on the player by adding the computed offset to the player’s current position)  
 
 **Result:**  
-Monsters spawn uniformly in a circle around the player, preventing unfair instant collisions.
+Monsters spawn uniformly in a circle around the player, preventing unfair instant collisions.  
 
 **Implemented in:** `MonsterSpawner.cs`
 
@@ -59,19 +59,19 @@ Monsters spawn uniformly in a circle around the player, preventing unfair instan
 To move monsters toward the player at a constant speed, regardless of distance.
 
 **Algorithm Steps:**
-1. Compute direction vector:
-direction = playerPosition - monsterPosition
-(finds the vector pointing from the monster to the player, defining the direction of movement for the chasing AI)
+1. Compute direction vector:  
+direction = playerPosition - monsterPosition  
+(finds the vector pointing from the monster to the player, defining the direction of movement for the chasing AI)  
 
 
-2. Normalize vector:
-normalizedDirection = direction.normalized
-(converts the direction vector into a unit vector, ensuring monsters move toward the player at a constant speed regardless of distance)
+2. Normalize vector:  
+normalizedDirection = direction.normalized  
+(converts the direction vector into a unit vector, ensuring monsters move toward the player at a constant speed regardless of distance)  
 
 
-3. Apply movement:
-monsterPosition += normalizedDirection × moveSpeed × Time.deltaTime
-(moves the monster toward the player each frame at a controlled speed while maintaining frame-rate independent motion)
+3. Apply movement:  
+monsterPosition += normalizedDirection × moveSpeed × Time.deltaTime  
+(moves the monster toward the player each frame at a controlled speed while maintaining frame-rate independent motion)  
 
 **Result:**  
 Smooth and consistent chasing behavior independent of frame rate.
@@ -84,21 +84,21 @@ Smooth and consistent chasing behavior independent of frame rate.
 To rotate the sword continuously around the player as an automatic weapon.
 
 **Algorithm Steps:**
-1. Increase rotation angle:
-currentAngle += rotationSpeed × Time.deltaTime
-(increases the sword’s rotation angle each frame, producing smooth continuous spinning independent of frame rate)
+1. Increase rotation angle:  
+currentAngle += rotationSpeed × Time.deltaTime  
+(increases the sword’s rotation angle each frame, producing smooth continuous spinning independent of frame rate)  
 
-2. Convert to radians:
-angleInRadians = currentAngle × Mathf.Deg2Rad
+2. Convert to radians:  
+angleInRadians = currentAngle × Mathf.Deg2Rad  
 
-3. Compute orbit position:
-x = cos(angle) × orbitRadius
-y = sin(angle) × orbitRadius
-(Sine and cosine functions convert the rotation angle into x and y coordinates, keeping the sword at a fixed circular distance from the player)
+3. Compute orbit position:  
+x = cos(angle) × orbitRadius  
+y = sin(angle) × orbitRadius  
+(Sine and cosine functions convert the rotation angle into x and y coordinates, keeping the sword at a fixed circular distance from the player)  
 
-4. Set sword position:
-swordPosition = playerPosition + orbitOffset
-(positions the sword on its circular path around the player by adding the orbit offset to the player’s current position)
+4. Set sword position:  
+swordPosition = playerPosition + orbitOffset  
+(positions the sword on its circular path around the player by adding the orbit offset to the player’s current position)  
 
 **Result:**  
 The sword maintains a circular path around the player and automatically attacks monsters.
@@ -136,7 +136,7 @@ The sword maintains a circular path around the player and automatically attacks 
 
 ---
 
-## ⚙️ Controls
+## Controls
 
 | Action | Input |
 |--------|-------|
@@ -148,7 +148,7 @@ The sword maintains a circular path around the player and automatically attacks 
 
 ---
 
-## 🛠️ Engine & Tools
+## Engine & Tools
 
 - Unity 2D
 - C#
